@@ -28,7 +28,7 @@ function handleCommand(client, target, command){
   handler = commandMap.get(command);
   if (handler) {
     handler(client, target, command);
-  } else if (msg[0] === '!') {
+  } else if (command[0] === '!') {
     logUnknownCommandToConsole(command);
   }
 }
