@@ -1,14 +1,23 @@
 module.exports = handleCommand;
 
-const CURRENT_PROJECT_DESCRIPTION = "\
+const GITHUB_LINK = "https://github.com/rafib";
+
+const TWITCHBOT_PROJECT = "\
 We're currently writing a twitch bot! So far it can do !dice, !flip, !project, !commands\
 ";
+
+const ERLANG_2PC_PROJECT = "\
+We're reliving our glory days and doing a 2-phase commit project from when I was in university, see https://www.cse.unsw.edu.au/~cs9243/20t3/assigns/ass2/index.html for details\
+";
+
+const CURRENT_PROJECT_DESCRIPTION = ERLANG_2PC_PROJECT;
 
 const Commands = {
   DICE: '!dice',
   FLIP: '!flip',
   PROJECT: '!project',
   COMMANDS: '!commands',
+  GITHUB: '!github',
 };
 
 const commandMap = new Map([
@@ -16,12 +25,14 @@ const commandMap = new Map([
   [Commands.FLIP, sendCoinFlipResult],
   [Commands.PROJECT, sendCurrentProjectDescription],
   [Commands.COMMANDS, sendCommands],
+  [Commands.GITHUB, sendGithub],
 ]);
 
 const commandDescriptions = new Map([
   [Commands.DICE, 'roll a die'],
   [Commands.FLIP, 'flip a coin'],
   [Commands.PROJECT, 'our current project'],
+  [Commands.GITHUB, 'link to my github account'],
 ]);
 
 function handleCommand(client, target, command){
@@ -43,6 +54,10 @@ function sendCoinFlipResult(client, target, command) {
 
 function sendCurrentProjectDescription(client, target, command) {
   client.say(target, CURRENT_PROJECT_DESCRIPTION);
+}
+
+function sendGithub(client, target, command) {
+  client.say(target, GITHUB_LINK);
 }
 
 function sendCommands(client, target, command) {
